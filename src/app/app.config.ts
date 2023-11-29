@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CommonModule } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([
       BrowserModule,
       BrowserAnimationsModule,
+      CommonModule,
       HttpClientModule,
       RouterModule.forRoot(routes),
       ToastrModule.forRoot({ preventDuplicates: true }),
