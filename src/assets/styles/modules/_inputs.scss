@@ -1,0 +1,150 @@
+@mixin fontSize {
+  font-size: 0.7rem;
+  @include respond(lg) {
+    font-size: 0.8rem;
+  }
+  @include respond(xl) {
+    font-size: .9375rem;
+  }
+}
+
+.input {
+  margin-top: 5px;
+  color: #505050;
+
+  .mat-form-field {
+    width: 100%;
+    &-wrapper {
+      padding: 0;
+      padding-bottom: 1.34375em !important;
+      top: 0px;
+    }
+  }
+
+  .mat-input-element, .mat-input-element::placeholder{
+    @include fontSize;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    border-radius: 20px;
+    border: 1px solid #349fa7;
+    box-shadow: 0px 4px 14px -5px #9e9e9e61;
+    opacity: 1;
+    overflow: hidden;
+
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+      border: none;
+    }
+
+    .mat-form-field-disabled {
+      border: 1px solid #899899;
+      box-shadow: 0px 4px 14px -5px #9e9e9e61;
+    }
+  }
+
+  .mat-form-field-appearance-outline.mat-form-field-invalid
+    .mat-form-field-outline {
+    border-color: #f44336;
+  }
+
+  mat-label {
+    @include fontSize;
+  }
+
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label,
+  .mat-form-field-appearance-outline.mat-form-field-can-float
+    .mat-input-server:focus
+    + .mat-form-field-label-wrapper
+    .mat-form-field-label {
+    background: white;
+    width: auto;
+    padding: 0 5px;
+    color: black;
+    @include fontSize;
+  }
+
+  .mat-form-field.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-has-label.mat-focuced {
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+      padding: 0.5em 0 1em 0;
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.7em 0 0.8em 0 !important;
+    @include respond(xl) {
+      padding: 0.6em 0 0.8em 0;
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-prefix,
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0;
+  }
+  .mat-icon {
+    position: relative;
+    top: 4px;
+  }
+
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-suffix
+    .mat-icon-button {
+    width: 1.5em;
+    height: 1.5em;
+    @include respond(xl) {
+      width: 2.5em;
+      height: 2.5em;
+    }
+  }
+
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-suffix
+    .mat-datepicker-toggle-default-icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 6px;
+    @include respond(xl) {
+      top: 0px;
+    }
+  }
+
+  .mat-form-field-infix {
+    width: auto;
+    border-top: 0.24375em solid transparent;
+    @include respond(xl) {
+      width: 180px;
+      // border-top: 0.84375em solid transparent;
+    }
+  }
+
+  &__background-blue {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: #e6f1ff 0% 0% no-repeat padding-box;
+    }
+  }
+  &__box-shadow {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      box-shadow: 0px 0px 11px #9e9e9e61;
+      border: 1px solid #79d4dc;
+    }
+  }
+
+  &--border-100 {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      border-radius: 30px;
+      border: 2px solid #349fa721;
+    }
+  }
+
+  &--padding-0 {
+    .mat-form-field-wrapper {
+      padding: 0 !important;
+    }
+  }
+}
+

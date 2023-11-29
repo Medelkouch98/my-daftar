@@ -1,0 +1,90 @@
+@import './variables';
+@import './mixins';
+@import './../../../../node_modules/@angular/material/core/theming/palette';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  font-family: $primary-font;
+}
+
+input,
+select,
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+hr {
+  width: 45%;
+  margin-right: auto;
+  margin-left: auto;
+  color: $unnamed-color-349fa7;
+  size: 0.03rem;
+}
+
+input {
+  // input default style
+  padding-left: 20px;
+
+  &::placeholder {
+    font: $unnamed-font-style-normal normal 500 0.75rem Montserrat;
+    text-align: left;
+    letter-spacing: 1.26px;
+    color: #505050;
+  }
+}
+
+.primary-color {
+  color: $unnamed-color-00c2d1 !important;
+}
+
+.accent-color {
+  color: $unnamed-color-1b478e !important;
+}
+
+.icon {
+  display: inline-block;
+  height: 30px;
+  margin: 0 8px;
+  text-align: center;
+  vertical-align: middle;
+  width: 20%;
+}
+
+// search bar
+@mixin searchControlStyle {
+  border-radius: 25px;
+  padding: 10px;
+  width: 85%;
+  border: 2px solid #e2f1f2;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  top: 0.25rem !important;
+}
+
+hr {
+  margin-bottom: 0.9375rem;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background: none !important;
+  // padding: 0 .75em 0 .75em !important;
+}
+
+
+.mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+.mat-form-field-underline {
+  bottom: 0 !important;
+  display: none;
+}

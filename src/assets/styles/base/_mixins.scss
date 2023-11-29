@@ -1,0 +1,56 @@
+@import './variables';
+
+@mixin svg-icon($color: $unnamed-color-1b478e, $size: 1.0625rem) {
+  background: $color;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  height: $size;
+  width: $size;
+  margin: 0;
+}
+
+@mixin text-with-icon {
+  display: flex;
+  align-items: center;
+}
+
+@mixin header-arrow-icon {
+  mat-icon {
+    font-size: 1rem;
+    color: $unnamed-color-656565;
+  }
+}
+
+@mixin small-text-icon($color, $font-size: 0.6rem) {
+  margin: 0;
+  padding: 0;
+  font: $unnamed-font-style-normal normal $unnamed-font-weight-normal $font-size
+    $unnamed-font-family-poppins;
+  color: $color;
+  mat-icon {
+    font-size: 1rem;
+  }
+  @include text-with-icon;
+}
+
+@mixin rounded-border {
+  background: $unnamed-color-ffffff;
+  border: 1px solid $unnamed-color-2976a8;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 29px;
+}
+
+// media queries
+@mixin respond($breakpoint) {
+  @if ($breakpoint == lg) {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == xl) {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+}
