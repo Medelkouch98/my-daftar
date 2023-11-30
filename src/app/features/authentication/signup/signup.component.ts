@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PasswordValidators } from '../../../core/validators/password.validators';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -26,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    RouterLink,
   ],
   templateUrl: './signup.component.html',
   styles: [
@@ -45,23 +48,49 @@ import { MatNativeDateModule } from '@angular/material/core';
         width: 70vw !important;
         max-width: 100vw !important;
       }
+      ::ng-deep .mat-horizontal-stepper-header {
+        padding: 0px 40px !important;
+      }
     `,
   ],
 })
 export class SignupComponent {
   firstFormGroup = this._formBuilder.group({
-    email: [''],
-    username: [''],
-    password: [''],
-    confirmPassword: [''],
+    email: ['', [Validators.required, Validators.email]],
+    username: ['', Validators.required],
+    password: [
+      '',
+      Validators.compose([
+        Validators.required,
+        this.passwordStrengthValidator.validatePasswordPattern,
+      ]),
+    ],
+    confirmPassword: [
+      '',
+      Validators.compose([
+        Validators.required,
+        this.passwordStrengthValidator.validatePasswordPattern,
+      ]),
+    ],
   });
   secondFormGroup = this._formBuilder.group({
-    lastName: [''],
-    firstName: [''],
-    city: [''],
-    birthDate: [''],
+    lastName: ['', Validators.required],
+    firstName: ['', Validators.required],
+    city: ['', Validators.required],
+    birthDate: ['', Validators.required],
   });
   isOptional = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    public passwordStrengthValidator: PasswordValidators
+  ) {}
+
+  firstFormSubmitted() {
+    console.log('firstFormGroup', this.firstFormGroup.value);
+  }
+
+  secondFormSubmitted() {
+    console.log('secondFormGroup', this.secondFormGroup.value);
+  }
 }

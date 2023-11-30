@@ -1,53 +1,120 @@
-<div class="w-full h-full pr-4 mx-4 my-12">
+<div class="w-full h-full pr-4 mx-4 mt-12">
   <mat-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup" class="flex flex-col">
+      <form
+        [formGroup]="firstFormGroup"
+        (ngSubmit)="firstFormSubmitted()"
+        class="flex flex-col "
+      >
         <h1 class="text-center text-[#005212] mt-40 font-armata text-[2rem]">
           Inscription
         </h1>
 
-        <div class="grid my-10 justify-items-center">
+        <div class="grid mt-10 justify-items-center">
           <div class="input">
             <input
               type="email"
               placeholder="daftar@example.com"
               formControlName="email"
             />
+            @if (firstFormGroup.hasError('email') &&
+            !firstFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            } @if (firstFormGroup.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
           </div>
           <div class="input">
             <input placeholder="mon_daftar" formControlName="username" />
-          </div>
-          <div class="input">
-            <input placeholder="Mot de passe" formControlName="password" />
+            @if (firstFormGroup.hasError('username') &&
+            !firstFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid username address</mat-error>
+            } @if (firstFormGroup.hasError('required')) {
+            <mat-error>username is <strong>required</strong></mat-error>
+            }
           </div>
           <div class="input">
             <input
+              type="password"
+              placeholder="Mot de passe"
+              formControlName="password"
+            />
+            @if (firstFormGroup.hasError('password') &&
+            !firstFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid password address</mat-error>
+            } @if (firstFormGroup.hasError('required')) {
+            <mat-error>password is <strong>required</strong></mat-error>
+            }
+          </div>
+          <div class="input">
+            <input
+              type="password"
               placeholder="Confirmer le mot de passe"
               formControlName="confirmPassword"
             />
+            @if (firstFormGroup.hasError('confirmPassword') &&
+            !firstFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid confirmPassword address</mat-error>
+            } @if (firstFormGroup.hasError('required')) {
+            <mat-error>confirmPassword is <strong>required</strong></mat-error>
+            }
           </div>
 
-          <div matStepperNext>
-            <button mat-raised-button matStepperNext>Suivant</button>
-          </div>
+          <button
+            class="my-8 btn bg-[#005212] w-[83%]"
+            [disabled]="!firstFormGroup.valid"
+            type="submit"
+            (click)="stepper.next()"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="text-center">
+          <a
+            class="cursor-pointer underline font-roboto font-extrabold text-[14px] text-[#005212]"
+            routerLink="/login"
+            >J’ai un compte</a
+          >
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup" class="flex flex-col">
-        <h1 class="text-center text-[#005212] mt-40 font-armata text-[2rem]">
+      <form
+        [formGroup]="secondFormGroup"
+        (ngSubmit)="secondFormSubmitted()"
+        class="flex flex-col"
+      >
+        <h1 class="text-center text-[#005212] mt-40 mb-0 font-armata text-[2rem]">
           Inscription
         </h1>
 
-        <div class="grid my-10 justify-items-center">
+        <div class="grid mt-10 justify-items-center">
           <div class="input">
             <input placeholder="Nom" formControlName="lastName" />
+            @if (secondFormGroup.hasError('lastName') &&
+            !secondFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid lastName address</mat-error>
+            } @if (secondFormGroup.hasError('required')) {
+            <mat-error>lastName is <strong>required</strong></mat-error>
+            }
           </div>
           <div class="input">
             <input placeholder="Prénom" formControlName="firstName" />
+            @if (secondFormGroup.hasError('firstName') &&
+            !secondFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid firstName address</mat-error>
+            } @if (secondFormGroup.hasError('required')) {
+            <mat-error>firstName is <strong>required</strong></mat-error>
+            }
           </div>
           <div class="input">
             <input placeholder="Ville" formControlName="city" />
+            @if (secondFormGroup.hasError('city') &&
+            !secondFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid city address</mat-error>
+            } @if (secondFormGroup.hasError('required')) {
+            <mat-error>city is <strong>required</strong></mat-error>
+            }
           </div>
           <mat-form-field appearance="outline">
             <input
@@ -56,6 +123,12 @@
               formControlName="birthDate"
               placeholder="Date de naissance"
             />
+            @if (secondFormGroup.hasError('birthDate') &&
+            !secondFormGroup.hasError('required')) {
+            <mat-error>Please enter a valid birthDate address</mat-error>
+            } @if (secondFormGroup.hasError('required')) {
+            <mat-error>birthDate is <strong>required</strong></mat-error>
+            }
             <mat-datepicker-toggle
               matIconSuffix
               [for]="picker"
@@ -63,9 +136,21 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
-          <div matStepperNext>
-            <button mat-raised-button matStepperNext>Suivant</button>
-          </div>
+          <button
+            class="btn bg-[#005212] w-[83%]"
+            type="submit"
+            [disabled]="!secondFormGroup.valid"
+            (click)="stepper.next()"
+          >
+            Suivant
+          </button>
+        </div>
+        <div class="text-center">
+          <a
+            class="my-8 cursor-pointer underline font-roboto font-extrabold text-[14px] text-[#005212]"
+            routerLink="/login"
+            >J’ai un compte</a
+          >
         </div>
       </form>
     </mat-step>
