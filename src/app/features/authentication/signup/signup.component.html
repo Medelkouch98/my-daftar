@@ -1,0 +1,80 @@
+<div class="w-full h-full pr-4 mx-4 my-12">
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" class="flex flex-col">
+        <h1 class="text-center text-[#005212] mt-40 font-armata text-[2rem]">
+          Inscription
+        </h1>
+
+        <div class="grid my-10 justify-items-center">
+          <div class="input">
+            <input
+              type="email"
+              placeholder="daftar@example.com"
+              formControlName="email"
+            />
+          </div>
+          <div class="input">
+            <input placeholder="mon_daftar" formControlName="username" />
+          </div>
+          <div class="input">
+            <input placeholder="Mot de passe" formControlName="password" />
+          </div>
+          <div class="input">
+            <input
+              placeholder="Confirmer le mot de passe"
+              formControlName="confirmPassword"
+            />
+          </div>
+
+          <div matStepperNext>
+            <button mat-raised-button matStepperNext>Suivant</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="flex flex-col">
+        <h1 class="text-center text-[#005212] mt-40 font-armata text-[2rem]">
+          Inscription
+        </h1>
+
+        <div class="grid my-10 justify-items-center">
+          <div class="input">
+            <input placeholder="Nom" formControlName="lastName" />
+          </div>
+          <div class="input">
+            <input placeholder="Prénom" formControlName="firstName" />
+          </div>
+          <div class="input">
+            <input placeholder="Ville" formControlName="city" />
+          </div>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthDate"
+              placeholder="Date de naissance"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <div matStepperNext>
+            <button mat-raised-button matStepperNext>Suivant</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
