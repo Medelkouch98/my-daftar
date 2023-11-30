@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-login',
   standalone: true,
   imports: [MatFormFieldModule, RouterLink],
-  templateUrl: './login.component.html',
+  templateUrl: './confirm-signup.component.html',
   styles: [
     `
       .header{
@@ -18,4 +18,4 @@ import { RouterLink } from '@angular/router';
     `,
   ],
 })
-export class LoginComponent {}
+export class ConfirmSignupComponent {}

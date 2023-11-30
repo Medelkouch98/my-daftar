@@ -4,7 +4,7 @@
       <form
         [formGroup]="firstFormGroup"
         (ngSubmit)="firstFormSubmitted()"
-        class="flex flex-col "
+        class="flex flex-col"
       >
         <h1 class="text-center text-[#005212] mt-40 font-armata text-[2rem]">
           Inscription
@@ -84,7 +84,9 @@
         (ngSubmit)="secondFormSubmitted()"
         class="flex flex-col"
       >
-        <h1 class="text-center text-[#005212] mt-40 mb-0 font-armata text-[2rem]">
+        <h1
+          class="text-center text-[#005212] mt-40 mb-0 font-armata text-[2rem]"
+        >
           Inscription
         </h1>
 
@@ -147,19 +149,72 @@
         </div>
         <div class="text-center">
           <a
-            class="my-8 cursor-pointer underline font-roboto font-extrabold text-[14px] text-[#005212]"
+            class="header cursor-pointer underline font-roboto font-extrabold text-[14px] text-[#005212]"
             routerLink="/login"
             >J’ai un compte</a
           >
         </div>
       </form>
     </mat-step>
-    <mat-step>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+    <mat-step [stepControl]="hizbFormGroup">
+      <form [formGroup]="hizbFormGroup" (ngSubmit)="hizbFormGroupSubmitted()">
+        <h1
+          class="text-center text-[#005212] mt-40 mb-0 font-armata text-[2rem]"
+        >
+          Inscription
+        </h1>
+
+        <div class="grid mt-10 justify-items-center">
+          <p class="mt-4 text-center">
+            Ahzab consécutifs appris et maitrisés (إسترجاع)
+          </p>
+
+          <ng-container formArrayName="ahzabArray">
+            @for(ahzab of ahzabArray.controls; track ahzab; let i = $index){
+            <div
+              class="flex items-center justify-center gap-4 justify-items-center"
+            >
+              <div class="flex justify-center">
+                <p>De page:</p>
+                <mat-form-field class="w-[5rem] h-16">
+                  <mat-select [formControl]="getFormControl(ahzab, 'from')">
+                    @for (number of numbers; track number) {
+                    <mat-option [value]="number">{{ number }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="flex justify-center">
+                <p>A:</p>
+                <mat-form-field class="w-[5rem] h-16">
+                  <mat-select [formControl]="getFormControl(ahzab, 'to')">
+                    @for (number of numbers; track number) {
+                    <mat-option [value]="number">{{ number }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button (click)="dropAhzab(i)" class="text-red">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+            }
+          </ng-container>
+
+          <button class="btn bg-[#005212] w-[83%]" (click)="addAhzab()">
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <button
+            class="btn mt-8 bg-[#005212] w-[83%]"
+            type="submit"
+            routerLink="/confirm-signup"
+            [disabled]="!hizbFormGroup.valid"
+          >
+            Terminer
+          </button>
+        </div>
+      </form>
     </mat-step>
   </mat-stepper>
 </div>
