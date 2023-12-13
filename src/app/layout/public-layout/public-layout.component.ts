@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'app-public-layout',
   standalone: true,
   imports: [RouterOutlet],
   template: `
@@ -11,4 +11,4 @@ import { RouterOutlet } from '@angular/router';
     </div>
   `,
 })
-export class LayoutComponent {}
+export class PublicLayoutComponent {}

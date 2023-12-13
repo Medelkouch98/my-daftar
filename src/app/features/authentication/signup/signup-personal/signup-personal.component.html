@@ -1,0 +1,32 @@
+<form [formGroup]="form" class="flex flex-col">
+  <div class="grid mt-10 justify-items-center">
+    <mat-form-field class="w-[60%]">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Ville</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker" />
+      <mat-datepicker #picker />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-[30%]"
+      (click)="stepper.next()"
+      [disabled]="form.invalid"
+    >
+      Suuivant
+    </button>
+  </div>
+</form>

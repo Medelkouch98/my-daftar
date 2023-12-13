@@ -1,0 +1,51 @@
+<form [formGroup]="form">
+  <div class="grid mt-10 justify-items-center">
+    <p class="mt-4 text-center">
+      Ahzab consécutifs appris et maitrisés (إسترجاع)
+    </p>
+
+    <ng-container formArrayName="ahzabArray">
+      @for(ahzab of ahzabArray.controls; track ahzab; let i = $index){
+      <div class="flex items-center justify-center gap-4 justify-items-center">
+        <div class="flex justify-center">
+          <p>De page:</p>
+          <mat-form-field>
+            <mat-select [formControl]="getFormControl(ahzab, 'from')">
+              @for (number of numbers; track number) {
+              <mat-option [value]="number">{{ number }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="flex justify-center">
+          <p>A:</p>
+          <mat-form-field>
+            <mat-select [formControl]="getFormControl(ahzab, 'to')">
+              @for (number of numbers; track number) {
+              <mat-option [value]="number">{{ number }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button (click)="dropAhzab(i)" class="text-red">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+      }
+    </ng-container>
+
+    <button mat-flat-button class="bg-green-700 w-[40%]" (click)="addAhzab()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-[30%]"
+      [disabled]="form.invalid"
+      (click)="submitForm.emit()"
+    >
+      Terminer
+    </button>
+  </div>
+</form>

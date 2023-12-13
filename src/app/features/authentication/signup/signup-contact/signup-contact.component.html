@@ -1,0 +1,34 @@
+<form [formGroup]="form" class="flex flex-col">
+  <div class="grid mt-10 justify-items-center">
+    <mat-form-field class="w-[60%]">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Identifiant</mat-label>
+      <input matInput formControlName="userName" />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-[60%]">
+      <mat-label>Confirmer le Mot de passe</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      class="w-[30%]"
+      color="primary"
+      (click)="stepper.next()"
+      [disabled]="form.invalid"
+    >
+      Suivant
+    </button>
+  </div>
+</form>

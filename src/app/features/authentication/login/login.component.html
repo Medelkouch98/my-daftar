@@ -1,19 +1,38 @@
-<h1 class="text-center text-[#005212] header">Connexion</h1>
+<h1 class="text-center pt-20 text-[#005212]">Connexion</h1>
 
 <div class="grid my-4 justify-items-center">
-  <div class="pt-0 input">
-    <input placeholder="daftar@example.com" />
-  </div>
-  <div class="input">
-    <input type="password" placeholder="Mot de passe" />
-  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col">
+      <mat-form-field class=>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+        />
+      </mat-form-field>
 
-  <button class="my-2 btn" routerLink="/login">CONNEXION</button>
-</div>
-<div class="text-center">
-  <a
-    class="my-8 cursor-pointer underline font-roboto font-extrabold text-[14px] text-[#005212]"
-    routerLink="/signup"
-    >Je souhaite m’inscrire</a
-  >
+      <button
+        class="my-5"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        CONNEXION
+      </button>
+      <button
+        mat-button
+        color="primary"
+        class="underline"
+        [routerLink]="['/signup']"
+      >
+        Je souhaite m'inscrire
+      </button>
+    </div>
+  </form>
 </div>
